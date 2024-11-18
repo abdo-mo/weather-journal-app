@@ -1,7 +1,6 @@
 /* Global Variables */
 const api_key = '537cfefd7c27740538249cfb4f9b810d';
 const base_url = 'http://api.openweathermap.org/data/2.5/forecast?id='
-// Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
@@ -13,7 +12,7 @@ function performAction(e) {
     getTemp(base_url,id, api_key)
     .then(function(allData){
         const temperature = allData.list[0].main.temp;
-        postData('http://localhost:5000/add', {temp: temperature, date: d, content: user_res});
+        postData('http://localhost:5000/add', {temp: temperature, date: newDate, content: user_res});
       })
       .then(
         updateUI()
