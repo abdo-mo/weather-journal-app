@@ -1,18 +1,16 @@
-/* Global Variables */
-const api_key = '537cfefd7c27740538249cfb4f9b810d';
-const base_url = 'http://api.openweathermap.org/data/2.5/forecast?id='
-let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+const apiKey = '537cfefd7c27740538249cfb4f9b810d';
+const baseUrl = 'http://api.openweathermap.org/data/2.5/forecast?id='
+let date = new Date();
 
 document.getElementById('generate').addEventListener('click', performAction);
 
 function performAction(e) {
     id = document.getElementById('zip').value;
     user_res = document.getElementById('feelings').value;
-    getTemp(base_url,id, api_key)
+    getTemp(baseUrl,id, apiKey)
     .then(function(allData){
-        const temperature = allData.list[0].main.temp;
-        postData('http://localhost:5000/add', {temp: temperature, date: newDate, content: user_res});
+        const temp = allData.list[0].main.temp;
+        postData('http://localhost:5000/add', {temp: temp, date: date, content: user_res});
       })
       .then(
         updateUI()
